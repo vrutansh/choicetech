@@ -1,0 +1,12 @@
+body { 
+font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial
+ }
+.container { 
+  max-width: 900px; 
+}
+.btn { 
+  background: #2563eb; 
+  color: white;
+   padding: 8px 12px;
+    border-radius: 6px
+}
