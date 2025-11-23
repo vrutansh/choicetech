@@ -10,18 +10,29 @@ const { login } = useContext(AuthContext)
 const navigate = useNavigate()
 
 
-const handleSubmit = async (e) => {
-e.preventDefault()
-try {
-const res = await userLogin(form)
-// res expected to be { token, role }
-login(res.token, res.role || 'user')
-navigate('/jobs')
-} catch (err) {
-alert(err.response?.data?.message || err.message)
-}
-}
+// const handleSubmit = async (e) => {
+// e.preventDefault()
+// try {
+// const res = await userLogin(form)
+// // res expected to be { token, role }
+// login(res.token, res.role || 'user')
+// navigate('/jobs')
+// } catch (err) {
+// alert(err.response?.data?.message || err.message)
+// }
+// }
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await userLogin(form);
+    const role = res.role || 'user'; // force role
+    login(res.token, role); // update AuthContext
+    navigate('/jobs'); // redirect after state update
+  } catch (err) {
+    alert(err.response?.data?.message || err.message);
+  }
+};
 
 return (
 <form onSubmit={handleSubmit} className="max-w-md mx-auto">

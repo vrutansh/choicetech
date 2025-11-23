@@ -12,6 +12,8 @@ import EmployerJobs from './pages/EmployerJobs'
 import CreateJob from './pages/CreateJob'
 import EditJob from './pages/EditJob'
 import ProtectedRoute from './components/ProtectedRoute'
+import ChooseRole from './pages/ChooseRole'
+import EmployerApplicants from './pages/EmployerApplicants'
 
 
 function App() {
@@ -24,7 +26,7 @@ function App() {
         <Routes>
           
           {/* Public / User */}
-          <Route path="/" element={<Navigate to="/jobs" replace />} />
+          <Route path="/" element={<ChooseRole />} />
           <Route path="/register" element={<UserRegister />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="/jobs" element={<UserJobs />} />
@@ -45,6 +47,10 @@ function App() {
           <Route path="/employer/jobs/edit/:id" element={
             <ProtectedRoute role="employer"><EditJob /></ProtectedRoute>
           } />
+          <Route path="/employer/jobs/:jobId/applications" element={ 
+            <ProtectedRoute role="employer">
+               <EmployerApplicants />
+             </ProtectedRoute> } />
         </Routes>
       </div>
     </>

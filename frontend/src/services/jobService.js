@@ -57,3 +57,11 @@ export async function deleteJob(id, token) {
   const { data } = await API.delete(`/employer/jobs/${id}`, withAuth(token))
   return data
 }
+
+export const getApplications = async (jobId, token) => {
+    return axios.get(`${API}/employer/jobs/${jobId}/applications`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+};
