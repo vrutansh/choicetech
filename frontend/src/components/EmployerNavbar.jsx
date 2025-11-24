@@ -13,17 +13,35 @@ export default function EmployerNavbar() {
   };
 
   return (
-    <nav className="bg-gray-800 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div>
-          <Link to="/" className="font-bold mr-4">JobPortal</Link>
-          <Link to="/employer/jobs" className="mr-4">My Jobs</Link>
-          <Link to="/employer/jobs/create" className="mr-4">Create</Link>
+    <nav className="bg-neutral-50 shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        
+        <div className="flex items-center space-x-6">
+          <Link
+            to="/"
+            className="text-2xl font-bold text-blue-800 hover:text-blue-700 transition"
+          >
+            JobPortal
+          </Link>
+          <Link
+            to="/employer/jobs"
+            className="text-gray-900 hover:text-blue-600 transition font-medium"
+          >
+            My Jobs
+          </Link>
+          <Link
+            to="/employer/jobs/create"
+            className="text-gray-900 hover:text-blue-600 transition font-medium"
+          >
+            Create
+          </Link>
         </div>
+
+        
         <div>
           <button
             onClick={handleLogout}
-            className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition font-medium"
           >
             Logout
           </button>

@@ -42,5 +42,5 @@ const ChooseRole = () => {
     </div>
   );
 };
-
+  
 export default ChooseRole;

@@ -22,7 +22,6 @@ export default function EditJob() {
   useEffect(() => {
     (async () => {
       const j = await fetchJobById(id);
-
       setForm({
         title: j.title || "",
         company: j.company || "",
@@ -43,20 +42,23 @@ export default function EditJob() {
       alert("Job Updated!");
       navigate("/employer/jobs");
     } catch (err) {
-      alert(err.response?.data?.message || err.message);
+      alert(err.response?.data?.msg || err.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
-      <h2 className="text-2xl mb-4">Edit Job</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md mt-10"
+    >
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Edit Job</h2>
 
       <input
         required
         placeholder="Title"
         value={form.title}
         onChange={(e) => setForm({ ...form, title: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <input
@@ -64,7 +66,7 @@ export default function EditJob() {
         placeholder="Company"
         value={form.company}
         onChange={(e) => setForm({ ...form, company: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <input
@@ -72,7 +74,7 @@ export default function EditJob() {
         placeholder="Location"
         value={form.location}
         onChange={(e) => setForm({ ...form, location: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <input
@@ -80,7 +82,7 @@ export default function EditJob() {
         placeholder="Salary Range"
         value={form.salaryRange}
         onChange={(e) => setForm({ ...form, salaryRange: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <input
@@ -88,7 +90,7 @@ export default function EditJob() {
         placeholder="Job Type"
         value={form.jobType}
         onChange={(e) => setForm({ ...form, jobType: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <textarea
@@ -96,7 +98,7 @@ export default function EditJob() {
         placeholder="Description"
         value={form.description}
         onChange={(e) => setForm({ ...form, description: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <textarea
@@ -104,7 +106,7 @@ export default function EditJob() {
         placeholder="Requirements"
         value={form.requirements}
         onChange={(e) => setForm({ ...form, requirements: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
       <input
@@ -113,10 +115,15 @@ export default function EditJob() {
         placeholder="Deadline"
         value={form.deadline}
         onChange={(e) => setForm({ ...form, deadline: e.target.value })}
-        className="block w-full p-2 mb-2"
+        className="w-full px-4 py-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
 
-      <button className="btn mt-2">Save</button>
+      <button
+        type="submit"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg shadow transition-colors"
+      >
+        Save
+      </button>
     </form>
   );
 }
