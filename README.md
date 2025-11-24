@@ -122,7 +122,7 @@ The frontend will run on `http://localhost:5173` (or the port Vite chooses).
 
 ## 📖 API Documentation
 
-Complete API documentation is available [here](https://github.com/vrutansh/choicetech/raw/main/Job_Portal_API_Documentation.pdf).
+Complete API documentation is available [here](https://documenter.getpostman.com/view/45113146/2sB3dHWtRK).
 
 
 ---
