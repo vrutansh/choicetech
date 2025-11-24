@@ -135,7 +135,20 @@ Complete API documentation is available [here](https://documenter.getpostman.com
 
 ---
 
-## 🛠 Author
+## Task Completed 
+✅ User registration with validation  
+✅ Secure user login system  
+✅ Protected routes (only authenticated users can access protected pages)  
+✅ Role-based access control (RBAC)  
 
-**Vrutansh Patel**
-GitHub: [https://github.com/vrutansh](https://github.com/vrutansh)
+✅ Create new job postings with comprehensive information  
+✅ View all jobs they have posted in a dashboard  
+✅ Edit existing job postings to update information  
+✅ Delete job postings when positions are filled  
+
+✅ Browse all available job postings with search/filter options  
+✅ View detailed information about each job opportunity  
+✅ Apply to jobs by submitting applications  
+
+✅ Advanced search and filtering options  
+✅ Application tracking  
