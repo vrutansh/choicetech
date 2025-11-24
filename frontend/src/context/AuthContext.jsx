@@ -9,9 +9,9 @@ export function AuthProvider({ children }) {
     name: null,
     companyName: null,
   });
-  const [loading, setLoading] = useState(true); // wait until localStorage loaded
+  const [loading, setLoading] = useState(true); 
 
-  // initialize auth from localStorage on mount
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
