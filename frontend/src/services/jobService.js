@@ -26,7 +26,7 @@ export async function getJob(id) {
 //   return data
 // }
 export async function applyJob(id, payload, token) {
-  const { data } = await axios.post(
+  const { data } = await API.post(
     `/jobs/${id}/apply`,
     payload,
     withAuth(token)

@@ -9,11 +9,11 @@ export default function PublicNavbar() {
         <div>
           <Link to="/" className="font-bold mr-4">JobPortal</Link>
         </div>
-        <div>
+        {/* <div>
           <Link to="/user/login" className="mr-4">Login</Link>
           <Link to="/user/register" className="mr-4">Register</Link>
           <Link to="/employer/login" className="mr-4">Employer</Link>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

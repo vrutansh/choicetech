@@ -20,7 +20,7 @@ const ChooseRole = () => {
             Register as User
           </Link>
           <Link
-            to="/register"
+            to="/employer/register"
             className="text-center py-2 px-4 bg-green-600 text-white rounded hover:bg-green-700 transition"
           >
             Register as Employer

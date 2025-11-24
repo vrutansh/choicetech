@@ -30,7 +30,8 @@ def job_details(job_id):
 # Apply to job
 @applicant.post("/jobs/<job_id>/apply")
 @jwt_required()
-@role_required("applicant")
+@role_required(["user", "applicant"])
+# @role_required("applicant")
 def apply(job_id):
     applicant_id = get_jwt_identity()
 
@@ -51,7 +52,8 @@ def apply(job_id):
 # Logged-in user applied jobs
 @applicant.get("/applied-jobs")
 @jwt_required()
-@role_required("applicant")
+@role_required(["user", "applicant"])
+# @role_required("applicant")
 def applied_jobs():
     applicant_id = get_jwt_identity()
     applications = get_applications_by_applicant(applicant_id)

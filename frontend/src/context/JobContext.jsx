@@ -28,10 +28,18 @@ return jobService.getJob(id)
 }
 
 
-const applyToJob = async (id) => {
-if (!auth.token) throw new Error('Not authenticated')
-return jobService.applyJob(id, auth.token)
-}
+// const applyToJob = async (id) => {
+// if (!auth.token) throw new Error('Not authenticated')
+// return jobService.applyJob(id, auth.token)
+// }
+const applyToJob = async (id, resumeLink) => {
+  if (!auth.token) throw new Error("Not authenticated");
+
+  const payload = { resumeUrl: resumeLink };
+
+  return jobService.applyJob(id, payload, auth.token);
+};
+
 
 
 const createJob = async (data) => {

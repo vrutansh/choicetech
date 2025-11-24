@@ -8,19 +8,19 @@ const API = axios.create({
 
 
 export async function userRegister(payload) {
-const { data } = await API.post('/auth/register', payload)
+const { data } = await API.post('/auth/register-user', payload)
 return data
 }
 
 
 export async function userLogin(payload) {
 const { data } = await API.post('/auth/login', payload)
-return data // expected to include token and role
+return data 
 }
 
 
 export async function employerRegister(payload) {
-const { data } = await API.post('/auth/employer/register', payload)
+const { data } = await API.post('/auth/register-employer', payload)
 return data
 }
 

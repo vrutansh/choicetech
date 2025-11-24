@@ -1,13 +1,34 @@
+// import React, { useContext } from 'react'
+// import { AuthContext } from '../context/AuthContext'
+// import { Navigate } from 'react-router-dom'
+
+
+// export default function ProtectedRoute({ children, role }) {
+// const { auth } = useContext(AuthContext)
+
+
+// if (!auth.token) return <Navigate to="/login" replace />
+// if (role && auth.role !== role) return <Navigate to="/" replace />
+// return children
+// }
+
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { Navigate } from 'react-router-dom'
 
-
 export default function ProtectedRoute({ children, role }) {
-const { auth } = useContext(AuthContext)
+  const { auth } = useContext(AuthContext)
 
+  if (!auth.token) return <Navigate to="/login" replace />
 
-if (!auth.token) return <Navigate to="/login" replace />
-if (role && auth.role !== role) return <Navigate to="/" replace />
-return children
+  // If role is a string, convert to array
+  const allowedRoles = Array.isArray(role) ? role : [role]
+
+  // If specific roles are required, check membership
+  if (role && !allowedRoles.includes(auth.role)) {
+    return <Navigate to="/" replace />
+  }
+
+  return children
 }
+

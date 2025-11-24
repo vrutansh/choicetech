@@ -1,34 +1,55 @@
-import React, { useEffect, useState, useContext } from 'react'
-import axios from 'axios'
-import { AuthContext } from '../context/AuthContext'
-
+import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 export default function AppliedJobs() {
-const { auth } = useContext(AuthContext)
-const [applied, setApplied] = useState([])
+  const { auth } = useContext(AuthContext);
+  const [applied, setApplied] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(
+          ('http://localhost:5000/api') + '/applied-jobs',
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+        setApplied(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, []);
 
-useEffect(() => {
-;(async () => {
-try {
-const res = await axios.get((process.env.REACT_APP_API_URL || 'http://localhost:5000/api') + '/jobs/${id}/apply', { headers: { Authorization: `Bearer ${auth.token}` } })
-setApplied(res.data)
-} catch (err) {
-console.error(err)
-}
-})()
-}, [])
+  return (
+    <div>
+      <h2 className="text-2xl mb-4">Applied Jobs</h2>
 
+      {applied.length === 0 && <p>No applied jobs found.</p>}
 
-return (
-<div>
-<h2 className="text-2xl mb-4">Applied Jobs</h2>
-{applied.map(a => (
-<div key={a._id} className="border p-3 mb-2">
-<h3>{a.title}</h3>
-<p>{a.company}</p>
-</div>
-))}
-</div>
-)
+      {applied.map((a) => (
+        <div key={a.applicationId} className="border p-3 mb-2 rounded">
+          <h3 className="font-semibold text-lg">{a.job?.title}</h3>
+          <p className="text-gray-700">{a.job?.company}</p>
+
+          {a.resumeUrl && (
+            <p className="mt-2">
+              <strong>Resume:</strong>{" "}
+              <a
+                href={a.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 underline"
+              >
+                View Resume
+              </a>
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  );
 }

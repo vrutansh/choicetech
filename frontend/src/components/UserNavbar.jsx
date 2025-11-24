@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export default function UserNavbar() {
-  const { logout } = useContext(AuthContext);
+  const { auth,logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -18,7 +18,10 @@ export default function UserNavbar() {
         <div>
           <Link to="/" className="font-bold mr-4">JobPortal</Link>
           <Link to="/jobs" className="mr-4">Jobs</Link>
-          <Link to="/applied" className="mr-4">Applied</Link>
+          {(auth.role === "user" || auth.role === "applicant") && (
+            <Link to="/applied-jobs" className="mr-4">Applied</Link>
+          )}
+        
         </div>
         <div>
           <button

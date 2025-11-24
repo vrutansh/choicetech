@@ -23,16 +23,34 @@ export default function JobDetails() {
     })();
   }, [id]);
 
+  // const handleApply = async () => {
+  //   try {
+  //     await applyToJob(id);
+  //     alert('Applied successfully!');
+  //     navigate('/applied');
+  //   } catch (err) {
+  //     alert(err.response?.data?.message || err.message);
+  //   }
+  // };
   const handleApply = async () => {
-    try {
-      await applyToJob(id);
-      alert('Applied successfully!');
-      navigate('/applied');
-    } catch (err) {
-      alert(err.response?.data?.message || err.message);
-    }
-  };
+  
+  const resumeLink = prompt("Please enter your resume link (Google Drive, PDF, etc):");
 
+  if (!resumeLink || resumeLink.trim() === "") {
+    alert("Resume link is required to apply.");
+    return;
+  }
+
+  try {
+    await applyToJob(id, resumeLink);
+    alert("Applied successfully!");
+    navigate("/applied-jobs");
+  } catch (err) {
+    alert(err.response?.data?.msg || err.message);
+  }
+};
+
+console.log("AUTH ->", auth);
   if (!job) return <div>Loading...</div>;
 
   return (
@@ -71,8 +89,8 @@ export default function JobDetails() {
         <strong>Deadline:</strong> {job.deadline?.substring(0, 10)}
       </p>
 
-      {/* Apply Button Logic */}
-      {authLoaded && auth.token && auth.role === 'applicant' ? (
+      
+      {authLoaded && auth.token && auth.role === 'user' || 'applicant' ? (
         <button onClick={handleApply} className="btn mt-4">
           Apply
         </button>

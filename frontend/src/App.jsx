@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import UserRegister from './pages/UserRegister'
@@ -14,25 +14,36 @@ import EditJob from './pages/EditJob'
 import ProtectedRoute from './components/ProtectedRoute'
 import ChooseRole from './pages/ChooseRole'
 import EmployerApplicants from './pages/EmployerApplicants'
-
+import { AuthContext } from './context/AuthContext'
 
 function App() {
-  
+  const { auth } = useContext(AuthContext);
 
   return (
     <>
       <Navbar />
       <div className="container mx-auto p-4">
         <Routes>
-          
+           <Route
+            path="/"
+            element={
+              !auth.token ? (
+                <ChooseRole />
+              ) : auth.role === "employer" ? (
+                <Navigate to="/employer/jobs" replace />
+              ) : (
+                <Navigate to="/jobs" replace />
+              )
+            }
+          />
           {/* Public / User */}
-          <Route path="/" element={<ChooseRole />} />
+          {/* <Route path="/" element={<ChooseRole />} /> */}
           <Route path="/register" element={<UserRegister />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="/jobs" element={<UserJobs />} />
           <Route path="/jobs/:id" element={<JobDetails />} />
-          <Route path="/applied" element={
-            <ProtectedRoute role="user"><AppliedJobs /></ProtectedRoute>
+          <Route path="/applied-jobs" element={
+            <ProtectedRoute role={["user", "applicant"]}><AppliedJobs /></ProtectedRoute>
           } />
 
           {/* Employer */}
